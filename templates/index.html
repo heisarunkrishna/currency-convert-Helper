@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #b5edda;
+    }
+
+    .container {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h3.title {
+      text-align: center;
+      font-size: 28px;
+      margin-top: 0;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error-msg {
+      color: red;
+      margin-top: 20px;
+    }
+
+    .result-msg {
+      text-align: center;
+      color: #28a745;
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="title">CURRENCY CONVERTER</h3>
+
+    <form method="post" action="/convert">
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label for="from_currency">From:</label>
+        <select id="from_currency" name="from_currency" required>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EUR</option>
+          <option value="JPY">JPY</option>
+          <option value="GBP">GBP</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="to_currency">To:</label>
+        <select id="to_currency" name="to_currency" required>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EUR</option>
+          <option value="JPY">JPY</option>
+          <option value="GBP">GBP</option>
+        </select>
+      </div>
+
+      <button type="submit">Convert Currency</button>
+    </form>
+
+    {% if error %}
+    <p class="error-msg">{{error}}</p>
+    {% endif %}
+
+    {% if result %}
+    <p class="result-msg">
+      Converted Amount: {{ result }}
+    </p>
+    {% endif %}
+  </div>
+</body>
+
+</html>
